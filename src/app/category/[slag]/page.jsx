@@ -1,3 +1,4 @@
+import ProductList from "@/app/components/shared/ProductList";
 import React, { Suspense } from "react";
 
 // Async component for fetching category products
@@ -17,6 +18,7 @@ const CategoryContent = async ({ params }) => {
     const products = await productsData();
 
     return (
+        <>
         <header className="rounded-2xl border border-base-300 bg-base-100 p-5 max-w-6xl mx-auto">
             <div className="flex items-center gap-3">
 
@@ -36,6 +38,19 @@ const CategoryContent = async ({ params }) => {
 
             </div>
         </header>
+
+        <div className="max-w-6xl mx-auto">
+             <ProductList products={products} />
+
+
+        </div>
+
+       
+
+
+
+
+        </>
     );
 };
 

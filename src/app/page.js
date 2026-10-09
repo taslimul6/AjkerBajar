@@ -10,7 +10,7 @@ export default function Home() {
 
     
 
-     <main class="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-10 px-4 py-7 sm:py-9">
+     <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-10 px-4 py-7 sm:py-9">
 
 
 

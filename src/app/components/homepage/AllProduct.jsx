@@ -15,7 +15,7 @@ const AllProduct = async() => {
     return (
         <div>
 
-            <h2 id="all-products-heading" class="text-xl font-bold">সব পণ্য</h2>
+            <h2 id="all-products-heading" className="text-xl font-bold">সব পণ্য</h2>
 
             <ProductList products={products} />
             
