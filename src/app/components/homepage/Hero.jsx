@@ -1,14 +1,20 @@
-import React from 'react';
+"use client";
+
+import React, { useState, useEffect } from 'react';
 
 
- const Hero = () => {
-  const today = new Date();
-  const formattedDate = today.toLocaleDateString('bn-BD', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
+const Hero = () => {
+  const [formattedDate, setFormattedDate] = useState('');
+
+  useEffect(() => {
+    const today = new Date();
+    setFormattedDate(today.toLocaleDateString('bn-BD', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    }));
+  }, []);
             return (
                 <section
                     aria-labelledby="hero-heading"
