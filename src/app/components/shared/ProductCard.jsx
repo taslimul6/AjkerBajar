@@ -5,7 +5,7 @@ const ProductCard = ({product}) => {
     return (
         
             <Link
-                href={`/product/${product.slug}`}
+                href={`/product/${product.id}`}
                 className="group block h-full rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
             >
                 <div className="flex items-start gap-3">
@@ -13,7 +13,8 @@ const ProductCard = ({product}) => {
                         className="grid size-12 shrink-0 place-items-center rounded-xl bg-slate-100 text-2xl"
                         aria-hidden="true"
                     >
-                        🧅
+                        
+                        {product.image}
                     </span>
                     <div className="min-w-0">
                         <h3 className="truncate text-base font-semibold text-slate-900 group-hover:text-emerald-700">
@@ -21,7 +22,7 @@ const ProductCard = ({product}) => {
                         </h3>
                         <p className="mt-0.5 text-xs text-slate-500">
                             
-                            {product.unit === "kg" ? "প্রতি কেজি" : product.unit === "liter" ? "প্রতি লিটার" : product.unit === "piece" ? "প্রতি পিস" : product.unit === "dozen" ? "প্রতি ডজন": ""}  
+                            {product.unit === "kg" ? "প্রতি কেজি" : product.unit === "litre" ? "প্রতি লিটার" : product.unit === "piece" ? "প্রতি পিস" : product.unit === "dozen" ? "প্রতি ডজন": ""}  
                             
                             </p>
                     </div>
