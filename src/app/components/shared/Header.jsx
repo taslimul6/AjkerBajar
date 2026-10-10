@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
+import UserInfo from './UserInfo';
 
 
 
@@ -41,21 +42,9 @@ const Header = async () => {
         </Link>
 
         {/* Sign In and Sign Up Buttons */}
-        <div className="ms-auto flex items-center gap-2">
-          <Link
-            href="/signin"
-            className="rounded-lg px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
-          >
-            সাইন ইন
-          </Link>
 
-          <Link
-            href="/signup"
-            className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-700"
-          >
-            সাইন আপ
-          </Link>
-        </div>
+        <UserInfo />
+       
       </div>
 
       {/* Category Navigation */}

@@ -1,7 +1,29 @@
+'use client'
 
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
+import { toast } from "react-toastify";
 
 const Signin = () => {
+
+    const onSubmit =async(e)=>{
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        const user = Object.fromEntries(formData.entries());
+
+        const {data, error} = await authClient.signIn.email({...user , callbackURL:'/' });
+
+        if(error){
+            toast.error(error.message)
+        }
+        
+
+
+    }
+
+
+
   return (
     <main className="flex-1">
       <div className="mx-auto flex w-full max-w-md flex-col gap-6 px-4 py-10">
@@ -21,7 +43,7 @@ const Signin = () => {
         <div className="card border border-base-300 bg-base-100">
           <div className="card-body">
 
-            <form noValidate className="flex flex-col gap-4">
+            <form noValidate className="flex flex-col gap-4" onSubmit={onSubmit}>
 
               {/* Email Field */}
               <label className="form-control w-full">

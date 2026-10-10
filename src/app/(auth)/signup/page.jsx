@@ -1,6 +1,37 @@
+'use client';
+
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { toast } from "react-toastify";
 
 const Signup = () => {
+
+    const onSubmit = async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        const user = Object.fromEntries(formData.entries());
+
+
+
+        const { data, error } = await authClient.signUp.email({ ...user });
+
+        if (data) {
+            redirect('/')
+
+        }
+
+        if (error) {
+
+            toast.error(error.message)
+
+        }
+
+    }
+
+
+
     return (
         <main className="flex-1">
 
@@ -21,7 +52,7 @@ const Signup = () => {
                 <div className="card border border-base-300 bg-base-100">
                     <div className="card-body">
 
-                        <form noValidate className="flex flex-col gap-4">
+                        <form noValidate className="flex flex-col gap-4" onSubmit={onSubmit}>
 
 
                             <label className="form-control w-full">
@@ -82,7 +113,7 @@ const Signup = () => {
                                     placeholder="আবার লিখুন"
                                     type="password"
                                     defaultValue=""
-                                    name="confirmPassword"
+
                                 />
                             </label>
 
