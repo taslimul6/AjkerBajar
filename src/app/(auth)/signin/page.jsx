@@ -6,21 +6,37 @@ import { toast } from "react-toastify";
 
 const Signin = () => {
 
-    const onSubmit =async(e)=>{
-        e.preventDefault();
+  const onSubmit = async (e) => {
+    e.preventDefault();
 
-        const formData = new FormData(e.target);
-        const user = Object.fromEntries(formData.entries());
+    const formData = new FormData(e.target);
+    const user = Object.fromEntries(formData.entries());
 
-        const {data, error} = await authClient.signIn.email({...user , callbackURL:'/' });
+    const { data, error } = await authClient.signIn.email({ ...user, callbackURL: '/' });
 
-        if(error){
-            toast.error(error.message)
-        }
-        
-
-
+    if (error) {
+      toast.error(error.message)
     }
+
+  }
+
+  const handleGoogle = async () => {
+
+    const data = await authClient.signIn.social({
+      provider: "google"
+    });
+
+  }
+
+    const handleGit = async () => {
+
+    const data = await authClient.signIn.social({
+      provider: "github"
+    });
+
+  }
+
+  
 
 
 
@@ -102,7 +118,7 @@ const Signin = () => {
               <div className="flex flex-col gap-2 sm:flex-row">
 
                 {/* Google Authentication Button */}
-                <button
+                <button onClick={handleGoogle}
                   type="button"
                   className="btn btn-outline flex-1"
                 >
@@ -136,7 +152,7 @@ const Signin = () => {
                 </button>
 
                 {/* GitHub Authentication Button */}
-                <button
+                <button onClick={handleGit}
                   type="button"
                   className="btn btn-outline flex-1"
                 >

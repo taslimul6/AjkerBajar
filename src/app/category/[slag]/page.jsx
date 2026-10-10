@@ -8,7 +8,7 @@ const CategoryContent = async ({ params }) => {
 
     const productsData = async () => {
         const res = await fetch(
-            `https://api.api-store.workers.dev/api/bazardor/products?category=${slag}`
+            `${process.env.BAZAR}/api/bazardor/products?category=${slag}`
         );
 
         const data = await res.json();

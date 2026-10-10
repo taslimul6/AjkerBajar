@@ -9,7 +9,7 @@ const SingleProductData = async ({ params }) => {
 
     const productData = async () => {
         const res = await fetch(
-            `https://api.api-store.workers.dev/api/bazardor/products/${slag}`
+            `${process.env.BAZAR}/api/bazardor/products/${slag}`
         );
 
         const data = await res.json();

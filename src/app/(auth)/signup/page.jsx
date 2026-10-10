@@ -30,6 +30,23 @@ const Signup = () => {
 
     }
 
+    
+      const handleGoogle = async () => {
+    
+        const data = await authClient.signIn.social({
+          provider: "google",
+        });
+    
+      }
+      
+      const handleGit = async () => {
+      
+          const data = await authClient.signIn.social({
+            provider: "github"
+          });
+      
+        }
+
 
 
     return (
@@ -132,7 +149,7 @@ const Signup = () => {
                             <div className="flex flex-col gap-2 sm:flex-row">
 
                                 {/* Google Authentication Button */}
-                                <button
+                                <button onClick={handleGoogle}
                                     type="button"
                                     className="btn btn-outline flex-1"
                                 >
@@ -167,6 +184,7 @@ const Signup = () => {
 
                                 {/* GitHub Authentication Button */}
                                 <button
+                                    onClick={handleGit}
                                     type="button"
                                     className="btn btn-outline flex-1"
                                 >

@@ -4,7 +4,8 @@ import Marquee from "react-fast-marquee";
 
   const products = async ()=>{
     "use cache";
-    const res = await fetch("https://api.api-store.workers.dev/api/bazardor/products");
+    
+    const res = await fetch(`${process.env.BAZAR}/api/bazardor/products`);
     const data = await res.json();
     return data;
   }

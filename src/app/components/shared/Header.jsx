@@ -6,7 +6,7 @@ import UserInfo from './UserInfo';
 
 const categroyList = async ()=>{
     "use cache";
-    const res = await fetch ("https://api.api-store.workers.dev/api/bazardor/categories");
+    const res = await fetch (`${process.env.BAZAR}/api/bazardor/categories`);
     const data = await res.json();
     return data;
 }
