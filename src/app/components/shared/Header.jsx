@@ -2,9 +2,11 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import { connection } from "next/server";
+
 import UserInfo from "./UserInfo";
+import CategoryNav from "./CategoryNav";
 
-
+// Fetch All Product Categories
 const categroyList = async () => {
   "use cache";
 
@@ -23,8 +25,8 @@ const categroyList = async () => {
   return data;
 };
 
+// Dynamic Bengali Date
 const TodayDate = async () => {
-  // Ensure the date is generated at request time
   await connection();
 
   const today = new Intl.DateTimeFormat("bn-BD", {
@@ -42,7 +44,7 @@ const TodayDate = async () => {
   );
 };
 
-
+// Website Header
 const Header = async () => {
   const categories = await categroyList();
 
@@ -92,35 +94,14 @@ const Header = async () => {
 
       </div>
 
-     
-      <nav
-        aria-label="পণ্য ক্যাটাগরি"
-        className="border-t border-slate-100 bg-white"
+      {/* Category Navigation with Active Route */}
+      <Suspense
+        fallback={
+          <div className="h-14 border-t border-slate-100 bg-white" />
+        }
       >
-        <ul className="mx-auto flex w-full max-w-6xl items-center gap-2 overflow-x-auto px-4 py-2 text-sm">
-
-          {categories.map((category) => (
-            <li
-              key={category.id}
-              className="shrink-0"
-            >
-              <Link
-                href={`/category/${category.slug}`}
-                className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-lg px-3 py-2 text-slate-700 transition hover:bg-emerald-50 hover:text-emerald-700"
-              >
-                {/* Category Icon */}
-                <span aria-hidden="true">
-                  {category.icon}
-                </span>
-
-                {/* Category Name */}
-                {category.nameBn}
-              </Link>
-            </li>
-          ))}
-
-        </ul>
-      </nav>
+        <CategoryNav categories={categories} />
+      </Suspense>
 
     </header>
   );
