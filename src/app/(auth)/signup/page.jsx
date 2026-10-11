@@ -47,6 +47,9 @@ const Signup = () => {
         const data = await authClient.signIn.social({
             provider: "google",
         });
+         if(data){
+               toast.success("Login Successfull")
+            }
 
     }
 
@@ -55,6 +58,9 @@ const Signup = () => {
         const data = await authClient.signIn.social({
             provider: "github"
         });
+         if(data){
+               toast.success("Login Successfull")
+            }
 
     }
 

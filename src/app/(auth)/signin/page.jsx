@@ -38,6 +38,10 @@ const Signin = () => {
       provider: "google"
     });
 
+    if(data){
+       toast.success("Login Successfull")
+    }
+
   }
 
     const handleGit = async () => {
@@ -45,6 +49,9 @@ const Signin = () => {
     const data = await authClient.signIn.social({
       provider: "github"
     });
+     if(data){
+       toast.success("Login Successfull")
+    }
 
   }
 
