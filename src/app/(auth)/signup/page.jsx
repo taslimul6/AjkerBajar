@@ -1,4 +1,5 @@
-'use client';
+
+"use client";
 
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
@@ -13,11 +14,21 @@ const Signup = () => {
         const formData = new FormData(e.target);
         const user = Object.fromEntries(formData.entries());
 
+        // Repeat Password Validation
+        const confirmPassword = e.target.querySelector(
+            "[data-confirm-password]"
+        ).value;
 
+        if (user.password !== confirmPassword) {
+            toast.error("পাসওয়ার্ড দুটি মিলছে না!");
+            return;
+        }
 
         const { data, error } = await authClient.signUp.email({ ...user });
 
         if (data) {
+
+            toast.success("Signup Successfull")
             redirect('/')
 
         }
@@ -30,22 +41,22 @@ const Signup = () => {
 
     }
 
-    
-      const handleGoogle = async () => {
-    
+
+    const handleGoogle = async () => {
+
         const data = await authClient.signIn.social({
-          provider: "google",
+            provider: "google",
         });
-    
-      }
-      
-      const handleGit = async () => {
-      
-          const data = await authClient.signIn.social({
+
+    }
+
+    const handleGit = async () => {
+
+        const data = await authClient.signIn.social({
             provider: "github"
-          });
-      
-        }
+        });
+
+    }
 
 
 
@@ -130,7 +141,7 @@ const Signup = () => {
                                     placeholder="আবার লিখুন"
                                     type="password"
                                     defaultValue=""
-
+                                    data-confirm-password=""
                                 />
                             </label>
 

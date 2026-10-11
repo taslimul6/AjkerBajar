@@ -35,6 +35,7 @@ const Profile = () => {
      toast.success("Your name has been updated successfully!");
   };
 
+   
   // Sign out the logged-in user
   const handleSignOut = async () => {
     const { error } = await authClient.signOut();
@@ -43,7 +44,7 @@ const Profile = () => {
       console.error("Sign out failed:", error);
       return;
     }
-
+     toast.success('Signout Successful')
     router.replace("/signin");
   };
 

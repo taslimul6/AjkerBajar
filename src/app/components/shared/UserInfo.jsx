@@ -4,13 +4,19 @@ import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React from 'react';
+import { toast } from 'react-toastify';
 
 const UserInfo = () => {
 
     const { data: session } = authClient.useSession();
     const user = session?.user;
 
-
+    const handleOut = async () => {
+       
+        await authClient.signOut();
+        toast.success('Signout Successful')
+        redirect("/");
+    }
 
 
     return (
@@ -106,10 +112,7 @@ const UserInfo = () => {
                         <li>
                             <button
                                 type="button"
-                                onClick={async () => {
-                                    await authClient.signOut();
-                                    redirect("/");
-                                }}
+                                onClick={handleOut}
                                 className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium text-rose-600 transition hover:bg-rose-50 hover:text-rose-700"
                             >
                                 <svg
@@ -136,10 +139,6 @@ const UserInfo = () => {
                 </div>
 
             </>
-
-
-
-
 
 
                 : <div >

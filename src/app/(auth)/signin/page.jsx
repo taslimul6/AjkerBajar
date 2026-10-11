@@ -2,6 +2,7 @@
 
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { toast } from "react-toastify";
 
 const Signin = () => {
@@ -12,7 +13,18 @@ const Signin = () => {
     const formData = new FormData(e.target);
     const user = Object.fromEntries(formData.entries());
 
-    const { data, error } = await authClient.signIn.email({ ...user, callbackURL: '/' });
+    const { data, error } = await authClient.signIn.email({ ...user });
+
+    if(data){
+      toast.success("Login Successfull")
+      redirect('/')
+      
+              
+    }
+
+
+
+   
 
     if (error) {
       toast.error(error.message)
@@ -91,16 +103,7 @@ const Signin = () => {
                 />
               </label>
 
-              {/* Forgot Password Link */}
-              <div className="flex justify-end">
-                <Link
-                  href="/forgot-password"
-                  className="text-sm font-medium text-emerald-700 hover:underline"
-                >
-                  পাসওয়ার্ড ভুলে গেছেন?
-                </Link>
-              </div>
-
+              
               {/* Signin Submit Button */}
               <button
                 type="submit"

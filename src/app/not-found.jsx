@@ -37,12 +37,7 @@ const NotFound = () => {
           </Link>
 
           {/* Market Comparison Page */}
-          <Link
-            href="/compare"
-            className="btn btn-outline"
-          >
-            বাজার তুলনা দেখুন
-          </Link>
+         
 
         </div>
 
